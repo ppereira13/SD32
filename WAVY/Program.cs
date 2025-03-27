@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace Wavy
 {
@@ -10,15 +11,34 @@ namespace Wavy
         // Porta do agregador
         static readonly int agregadorPort = 5001;
         static string agregadorIP = "127.0.0.1"; // Valor padrão caso não seja informado
+        static readonly int servidorPort = 5000; // Porta do servidor (Exemplo)
 
         static void Main(string[] args)
         {
             if (args.Length < 1)
             {
                 Console.WriteLine("Uso: Wavy.exe <IP_do_Agregador>");
+                Console.WriteLine("Pressione qualquer tecla para sair...");
+                Console.ReadKey();
                 return;
             }
             agregadorIP = args[0];
+
+            // Aguardar Servidor estar ativo
+            Console.WriteLine("Aguardando o servidor...");
+            while (!VerificarServidor())
+            {
+                Thread.Sleep(2000);  // Espera 2 segundos antes de tentar novamente
+            }
+
+            // Aguardar Agregador estar ativo
+            Console.WriteLine("Aguardando o agregador...");
+            while (!VerificarAgregador())
+            {
+                Thread.Sleep(2000);  // Espera 2 segundos antes de tentar novamente
+            }
+
+            Console.WriteLine("Servidor e Agregador estão ativos. Iniciando Wavy...");
 
             try
             {
@@ -86,6 +106,40 @@ namespace Wavy
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
+            }
+        }
+
+        // Método para verificar se o Servidor está ativo
+        static bool VerificarServidor()
+        {
+            try
+            {
+                using (var client = new TcpClient())
+                {
+                    client.Connect("127.0.0.1", servidorPort);  // Tenta conectar ao Servidor
+                    return client.Connected;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Método para verificar se o Agregador está ativo
+        static bool VerificarAgregador()
+        {
+            try
+            {
+                using (var client = new TcpClient())
+                {
+                    client.Connect(agregadorIP, agregadorPort);  // Tenta conectar ao Agregador
+                    return client.Connected;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }

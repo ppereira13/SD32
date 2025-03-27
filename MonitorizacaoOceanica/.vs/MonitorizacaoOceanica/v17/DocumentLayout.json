@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\pedro\\source\\repos\\SD32\\MonitorizacaoOceanica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0FAF390F-194A-45E4-BAD3-1660622166C0}|..\\WAVY\\WAVY.csproj|c:\\users\\pedro\\source\\repos\\sd32\\wavy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9358AB35-168F-477D-8CAE-6ABDAE63B8A7}|..\\Servidor\\Servidor.csproj|c:\\users\\pedro\\source\\repos\\sd32\\servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -16,11 +19,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\WAVY\\Program.cs",
+              "RelativeDocumentMoniker": "..\\WAVY\\Program.cs",
+              "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\WAVY\\Program.cs*",
+              "RelativeToolTip": "..\\WAVY\\Program.cs*",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAwwI0AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T17:50:46.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\Agregador\\Program.cs",
               "RelativeDocumentMoniker": "..\\Agregador\\Program.cs",
@@ -32,13 +48,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\Servidor\\Program.cs",
               "RelativeDocumentMoniker": "..\\Servidor\\Program.cs",
               "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\Servidor\\Program.cs",
               "RelativeToolTip": "..\\Servidor\\Program.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAmwCMAAAAlAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T17:13:04.584Z",
               "EditorCaption": ""
