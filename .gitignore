@@ -1,0 +1,11 @@
+# Ignorar a pasta de configurações do Visual Studio
+.vs/
+*.user
+*.suo
+
+# Ignorar arquivos de build
+bin/
+obj/
+
+# Ignorar configurações específicas do Visual Studio
+MonitorizacaoOceanica/.vs/
