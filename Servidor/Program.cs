@@ -34,3 +34,44 @@ namespace Servidor
             int bytesRead;
             bool running = true;
             bool firstMessage = true;
+
+
+            try
+            {
+                while (running && (bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    Console.WriteLine("Mensagem recebida: " + message);
+
+                    // Responde com "100 OK" na primeira mensagem
+                    if (firstMessage)
+                    {
+                        string response = "{\"status\": \"100 OK\", \"mensagem\": \"Conexão estabelecida.\"}";
+                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                        stream.Write(responseBytes, 0, responseBytes.Length);
+                        firstMessage = false;
+                    }
+
+                    // Se a mensagem contiver "QUIT", responde e encerra a comunicação
+                    if (message.Contains("QUIT"))
+                    {
+                        string response = "{\"status\": \"400 BYE\", \"mensagem\": \"Encerrando comunicação.\"}";
+                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                        stream.Write(responseBytes, 0, responseBytes.Length);
+                        running = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+                Console.WriteLine("Conexão encerrada.");
+            }
+        }
+    }
+}
