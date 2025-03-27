@@ -1,0 +1,7 @@
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\bin\Debug\MonitorizacaoOceanica.exe.config
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\bin\Debug\MonitorizacaoOceanica.exe
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\bin\Debug\MonitorizacaoOceanica.pdb
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOceanica.csproj.AssemblyReference.cache
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOceanica.csproj.CoreCompileInputs.cache
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOceanica.exe
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOceanica.pdb

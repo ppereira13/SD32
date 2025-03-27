@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pedro\\source\\repos\\SD32\\MonitorizacaoOceanica\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24DCB5DE-2E00-40D0-8494-6637DF4F55A5}|MonitorizacaoOceanica.csproj|c:\\users\\pedro\\source\\repos\\sd32\\monitorizacaooceanica\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24DCB5DE-2E00-40D0-8494-6637DF4F55A5}|MonitorizacaoOceanica.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9358AB35-168F-477D-8CAE-6ABDAE63B8A7}|..\\Servidor\\Servidor.csproj|c:\\users\\pedro\\source\\repos\\sd32\\servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E867509-CFAD-4072-93D3-8E0B3C0411E6}|..\\Agregador\\Agregador.csproj|c:\\users\\pedro\\source\\repos\\sd32\\agregador\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FAF390F-194A-45E4-BAD3-1660622166C0}|..\\WAVY\\WAVY.csproj|c:\\users\\pedro\\source\\repos\\sd32\\wavy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\WAVY\\Program.cs",
+              "RelativeDocumentMoniker": "..\\WAVY\\Program.cs",
+              "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\WAVY\\Program.cs",
+              "RelativeToolTip": "..\\WAVY\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T17:13:56.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\Agregador\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Agregador\\Program.cs",
+              "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\Agregador\\Program.cs",
+              "RelativeToolTip": "..\\Agregador\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T17:13:25.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\Servidor\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Servidor\\Program.cs",
+              "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\Servidor\\Program.cs",
+              "RelativeToolTip": "..\\Servidor\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T17:13:04.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pedro\\source\\repos\\SD32\\MonitorizacaoOceanica\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\MonitorizacaoOceanica\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T17:11:19.566Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
