@@ -2,64 +2,56 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
 namespace Wavy
 {
     class Program
     {
-        // Porta do agregador
+        // Porta do agregador e do servidor
         static readonly int agregadorPort = 5001;
+        static readonly int servidorPort = 5000;
         static string agregadorIP = "127.0.0.1"; // Valor padrão caso não seja informado
-        static readonly int servidorPort = 5000; // Porta do servidor (Exemplo)
+        static string servidorIP = "127.0.0.1"; // Valor padrão caso não seja informado
 
         static void Main(string[] args)
         {
-            if (args.Length < 1)
+            if (args.Length < 2)
             {
-                Console.WriteLine("Uso: Wavy.exe <IP_do_Agregador>");
-                Console.WriteLine("Pressione qualquer tecla para sair...");
-                Console.ReadKey();
+                Console.WriteLine("Uso: Wavy.exe <IP_do_Agregador> <IP_do_Servidor>");
                 return;
             }
             agregadorIP = args[0];
-
-            // Aguardar Servidor estar ativo
-            Console.WriteLine("Aguardando o servidor...");
-            while (!VerificarServidor())
-            {
-                Thread.Sleep(2000);  // Espera 2 segundos antes de tentar novamente
-            }
-
-            // Aguardar Agregador estar ativo
-            Console.WriteLine("Aguardando o agregador...");
-            while (!VerificarAgregador())
-            {
-                Thread.Sleep(2000);  // Espera 2 segundos antes de tentar novamente
-            }
-
-            Console.WriteLine("Servidor e Agregador estão ativos. Iniciando Wavy...");
+            servidorIP = args[1];
 
             try
             {
-                TcpClient client = new TcpClient();
-                client.Connect(agregadorIP, agregadorPort);
-                NetworkStream stream = client.GetStream();
+                // Conexão com o Agregador
+                Console.WriteLine($"Tentando conectar ao Agregador em {agregadorIP}:{agregadorPort}...");
+                TcpClient agregadorClient = new TcpClient();
+                agregadorClient.Connect(agregadorIP, agregadorPort);
+                NetworkStream agregadorStream = agregadorClient.GetStream();
+                Console.WriteLine("Conectado ao Agregador.");
 
-                Console.WriteLine("Conectado ao Agregador em " + agregadorIP + ":" + agregadorPort);
+                // Conexão com o Servidor
+                Console.WriteLine($"Tentando conectar ao Servidor em {servidorIP}:{servidorPort}...");
+                TcpClient servidorClient = new TcpClient();
+                servidorClient.Connect(servidorIP, servidorPort);
+                NetworkStream servidorStream = servidorClient.GetStream();
+                Console.WriteLine("Conectado ao Servidor.");
 
-                // Envia mensagem de INICIO com ID e sensores ativos
+                // Envia mensagem de INICIO com ID e sensores ativos para o Agregador e o Servidor
                 string inicioMsg = "{\"tipo\": \"INICIO\", \"id_wavy\": \"WAVY_001\", \"timestamp\": \""
                     + DateTime.UtcNow.ToString("o")
                     + "\", \"dados\": {\"status\": \"conectado\", \"sensores_ativos\": [\"acelerometro\", \"giroscopio\", \"transdutor\", \"hidrofone\", \"camera\"]}}";
                 byte[] inicioBytes = Encoding.UTF8.GetBytes(inicioMsg);
-                stream.Write(inicioBytes, 0, inicioBytes.Length);
+                agregadorStream.Write(inicioBytes, 0, inicioBytes.Length);
+                servidorStream.Write(inicioBytes, 0, inicioBytes.Length);
                 Console.WriteLine("Mensagem de INICIO enviada.");
 
                 // Loop para interação com o usuário via interface de texto
                 while (true)
                 {
-                    Console.Write("Digite um comando (DADOS, QUIT): ");
+                    Console.WriteLine("\nDigite um comando (DADOS, QUIT): ");
                     string comando = Console.ReadLine();
                     if (string.IsNullOrEmpty(comando))
                         continue;
@@ -85,14 +77,21 @@ namespace Wavy
                     }
 
                     byte[] msgBytes = Encoding.UTF8.GetBytes(mensagem);
-                    stream.Write(msgBytes, 0, msgBytes.Length);
+                    agregadorStream.Write(msgBytes, 0, msgBytes.Length);
+                    servidorStream.Write(msgBytes, 0, msgBytes.Length);
                     Console.WriteLine("Mensagem enviada: " + mensagem);
 
-                    // Espera resposta do agregador/servidor
-                    byte[] buffer = new byte[1024];
-                    int bytes = stream.Read(buffer, 0, buffer.Length);
-                    string resposta = Encoding.UTF8.GetString(buffer, 0, bytes);
-                    Console.WriteLine("Resposta recebida: " + resposta);
+                    // Espera resposta do agregador
+                    byte[] agregadorBuffer = new byte[1024];
+                    int agregadorBytes = agregadorStream.Read(agregadorBuffer, 0, agregadorBuffer.Length);
+                    string agregadorResposta = Encoding.UTF8.GetString(agregadorBuffer, 0, agregadorBytes);
+                    Console.WriteLine("Resposta do Agregador recebida: " + agregadorResposta);
+
+                    // Espera resposta do servidor
+                    byte[] servidorBuffer = new byte[1024];
+                    int servidorBytes = servidorStream.Read(servidorBuffer, 0, servidorBuffer.Length);
+                    string servidorResposta = Encoding.UTF8.GetString(servidorBuffer, 0, servidorBytes);
+                    Console.WriteLine("Resposta do Servidor recebida: " + servidorResposta);
 
                     if (comando.ToUpper() == "QUIT")
                     {
@@ -100,46 +99,20 @@ namespace Wavy
                         break;
                     }
                 }
-                stream.Close();
-                client.Close();
+
+                agregadorStream.Close();
+                agregadorClient.Close();
+                servidorStream.Close();
+                servidorClient.Close();
+            }
+            catch (SocketException se)
+            {
+                Console.WriteLine("Erro de socket: " + se.Message);
+                Console.WriteLine("Verifique se o IP e a porta do agregador e do servidor estão corretos e se os servidores estão acessíveis.");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
-            }
-        }
-
-        // Método para verificar se o Servidor está ativo
-        static bool VerificarServidor()
-        {
-            try
-            {
-                using (var client = new TcpClient())
-                {
-                    client.Connect("127.0.0.1", servidorPort);  // Tenta conectar ao Servidor
-                    return client.Connected;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        // Método para verificar se o Agregador está ativo
-        static bool VerificarAgregador()
-        {
-            try
-            {
-                using (var client = new TcpClient())
-                {
-                    client.Connect(agregadorIP, agregadorPort);  // Tenta conectar ao Agregador
-                    return client.Connected;
-                }
-            }
-            catch
-            {
-                return false;
             }
         }
     }
