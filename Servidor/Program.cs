@@ -8,7 +8,6 @@ namespace Servidor
 {
     class Program
     {
-        // Porta de escuta do servidor
         static readonly int port = 5000;
 
         static void Main(string[] args)
@@ -17,7 +16,6 @@ namespace Servidor
             listener.Start();
             Console.WriteLine("Servidor iniciado. Aguardando conexões...");
 
-            // Loop para aceitar múltiplas conexões
             while (true)
             {
                 TcpClient client = listener.AcceptTcpClient();
@@ -32,18 +30,15 @@ namespace Servidor
             NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[1024];
             int bytesRead;
-            bool running = true;
             bool firstMessage = true;
-
 
             try
             {
-                while (running && (bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine("Mensagem recebida: " + message);
 
-                    // Responde com "100 OK" na primeira mensagem
                     if (firstMessage)
                     {
                         string response = "{\"status\": \"100 OK\", \"mensagem\": \"Conexão estabelecida.\"}";
@@ -52,13 +47,12 @@ namespace Servidor
                         firstMessage = false;
                     }
 
-                    // Se a mensagem contiver "QUIT", responde e encerra a comunicação
                     if (message.Contains("QUIT"))
                     {
                         string response = "{\"status\": \"400 BYE\", \"mensagem\": \"Encerrando comunicação.\"}";
                         byte[] responseBytes = Encoding.UTF8.GetBytes(response);
                         stream.Write(responseBytes, 0, responseBytes.Length);
-                        running = false;
+                        break;
                     }
                 }
             }
