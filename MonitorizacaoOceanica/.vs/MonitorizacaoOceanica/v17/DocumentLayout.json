@@ -29,7 +29,7 @@
               "RelativeDocumentMoniker": "..\\WAVY\\Program.cs",
               "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\WAVY\\Program.cs*",
               "RelativeToolTip": "..\\WAVY\\Program.cs*",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAwwI0AAAAdAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAwwF4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T17:50:46.48Z",
               "EditorCaption": ""
@@ -42,9 +42,10 @@
               "RelativeDocumentMoniker": "..\\Agregador\\Program.cs",
               "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\Agregador\\Program.cs",
               "RelativeToolTip": "..\\Agregador\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFYAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T17:13:25.654Z"
+              "WhenOpened": "2025-03-27T17:13:25.654Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -54,7 +55,7 @@
               "RelativeDocumentMoniker": "..\\Servidor\\Program.cs",
               "ToolTip": "C:\\Users\\pedro\\source\\repos\\SD32\\Servidor\\Program.cs",
               "RelativeToolTip": "..\\Servidor\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAnAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-27T17:13:04.584Z",
               "EditorCaption": ""

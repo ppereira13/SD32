@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -8,79 +9,53 @@ namespace Agregador
 {
     class Program
     {
-        // Porta para as conexões das WAVYs
-        static readonly int portWavy = 5001;
-        // Informações de conexão do servidor (supondo localhost)
-        static readonly int serverPort = 5000;
-        static string serverIP = "127.0.0.1";
+        static readonly int portaAgregador = 5001;
+        static readonly int portaServidor = 5002;
+        static string servidorIP = "127.0.0.1";
 
-        static void Main(string[] args)
+        static void Main()
         {
-            TcpListener listener = new TcpListener(IPAddress.Any, portWavy);
+            TcpListener listener = new TcpListener(IPAddress.Any, portaAgregador);
             listener.Start();
-            Console.WriteLine("Agregador iniciado. Aguardando conexões das WAVYs...");
+            Console.WriteLine("Agregador pronto na porta " + portaAgregador);
 
             while (true)
             {
-                TcpClient wavyClient = listener.AcceptTcpClient();
-                Thread thread = new Thread(new ParameterizedThreadStart(HandleWavy));
-                thread.Start(wavyClient);
+                TcpClient client = listener.AcceptTcpClient();
+                Thread thread = new Thread(HandleClient);
+                thread.Start(client);
             }
         }
 
-        static void HandleWavy(object obj)
+        static void HandleClient(object obj)
         {
-            TcpClient wavyClient = (TcpClient)obj;
-            NetworkStream wavyStream = wavyClient.GetStream();
+            TcpClient client = (TcpClient)obj;
+            NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[1024];
-            int bytesRead;
 
-            // Conecta-se ao servidor para encaminhar as mensagens
-            TcpClient serverClient = new TcpClient();
-            serverClient.Connect(serverIP, serverPort);
-            NetworkStream serverStream = serverClient.GetStream();
-
-            try
+            while (true)
             {
-                while ((bytesRead = wavyStream.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                    string messageFromWavy = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine("Recebido da WAVY: " + messageFromWavy);
+                int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                if (bytesRead == 0) break;
 
-                    // Aqui poderia ser implementado o processamento dos CSV e atualização do estado da WAVY
+                string mensagem = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                Console.WriteLine("Recebido da WAVY: " + mensagem);
 
-                    // Encaminha a mensagem para o servidor
-                    byte[] messageBytes = Encoding.UTF8.GetBytes(messageFromWavy);
-                    serverStream.Write(messageBytes, 0, messageBytes.Length);
-                    Console.WriteLine("Encaminhado para o servidor.");
+                TcpClient servidorClient = new TcpClient();
+                servidorClient.Connect(servidorIP, portaServidor);
+                NetworkStream servidorStream = servidorClient.GetStream();
+                servidorStream.Write(buffer, 0, bytesRead);
 
-                    // Aguarda e exibe a resposta do servidor
-                    byte[] serverBuffer = new byte[1024];
-                    int serverBytes = serverStream.Read(serverBuffer, 0, serverBuffer.Length);
-                    string serverResponse = Encoding.UTF8.GetString(serverBuffer, 0, serverBytes);
-                    Console.WriteLine("Resposta do Servidor: " + serverResponse);
+                byte[] respostaBuffer = new byte[1024];
+                int respostaBytes = servidorStream.Read(respostaBuffer, 0, respostaBuffer.Length);
+                string respostaServidor = Encoding.UTF8.GetString(respostaBuffer, 0, respostaBytes);
+                Console.WriteLine("Resposta do Servidor: " + respostaServidor);
 
-                    // Opcional: encaminha a resposta do servidor de volta à WAVY
-                    wavyStream.Write(Encoding.UTF8.GetBytes(serverResponse), 0, serverResponse.Length);
-
-                    if (messageFromWavy.Contains("QUIT"))
-                    {
-                        Console.WriteLine("Recebido comando de QUIT. Encerrando comunicação.");
-                        break;
-                    }
-                }
+                servidorClient.Close();
+                byte[] resposta = Encoding.UTF8.GetBytes("Mensagem recebida e enviada ao servidor.");
+                stream.Write(resposta, 0, resposta.Length);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro: " + ex.Message);
-            }
-            finally
-            {
-                wavyStream.Close();
-                wavyClient.Close();
-                serverStream.Close();
-                serverClient.Close();
-            }
+            client.Close();
         }
     }
 }

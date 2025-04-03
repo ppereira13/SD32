@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -8,20 +9,19 @@ namespace Servidor
 {
     class Program
     {
-        // Porta de escuta do servidor
-        static readonly int port = 5000;
+        static readonly int portaServidor = 5002;
+        static readonly object lockObj = new object();
 
-        static void Main(string[] args)
+        static void Main()
         {
-            TcpListener listener = new TcpListener(IPAddress.Any, port);
+            TcpListener listener = new TcpListener(IPAddress.Any, portaServidor);
             listener.Start();
-            Console.WriteLine("Servidor iniciado. Aguardando conexões...");
+            Console.WriteLine("Servidor pronto na porta " + portaServidor);
 
-            // Loop para aceitar múltiplas conexões
             while (true)
             {
                 TcpClient client = listener.AcceptTcpClient();
-                Thread thread = new Thread(new ParameterizedThreadStart(HandleClient));
+                Thread thread = new Thread(HandleClient);
                 thread.Start(client);
             }
         }
@@ -31,47 +31,24 @@ namespace Servidor
             TcpClient client = (TcpClient)obj;
             NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[1024];
-            int bytesRead;
-            bool running = true;
-            bool firstMessage = true;
 
-
-            try
+            while (true)
             {
-                while (running && (bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                if (bytesRead == 0) break;
+
+                string mensagem = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                Console.WriteLine("Dados recebidos: " + mensagem);
+
+                lock (lockObj)
                 {
-                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine("Mensagem recebida: " + message);
-
-                    // Responde com "100 OK" na primeira mensagem
-                    if (firstMessage)
-                    {
-                        string response = "{\"status\": \"100 OK\", \"mensagem\": \"Conexão estabelecida.\"}";
-                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
-                        stream.Write(responseBytes, 0, responseBytes.Length);
-                        firstMessage = false;
-                    }
-
-                    // Se a mensagem contiver "QUIT", responde e encerra a comunicação
-                    if (message.Contains("QUIT"))
-                    {
-                        string response = "{\"status\": \"400 BYE\", \"mensagem\": \"Encerrando comunicação.\"}";
-                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
-                        stream.Write(responseBytes, 0, responseBytes.Length);
-                        running = false;
-                    }
+                    File.AppendAllText("dados_servidor.txt", mensagem + Environment.NewLine);
                 }
+
+                byte[] resposta = Encoding.UTF8.GetBytes("Dados processados com sucesso.");
+                stream.Write(resposta, 0, resposta.Length);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro: " + ex.Message);
-            }
-            finally
-            {
-                stream.Close();
-                client.Close();
-                Console.WriteLine("Conexão encerrada.");
-            }
+            client.Close();
         }
     }
 }
