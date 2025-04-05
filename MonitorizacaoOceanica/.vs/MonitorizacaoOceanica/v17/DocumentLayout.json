@@ -1,15 +1,15 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Rita\\source\\repos\\SD32\\MonitorizacaoOceanica\\",
+  "WorkspaceRootPath": "C:\\Users\\jordi\\OneDrive\\Ambiente de Trabalho\\LEI\\ANO III\\2\u00BA Semestre\\Sistemas Distribu\u00EDdos\\Novo Reposit\u00F3rio\\MonitorizacaoOceanica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0FAF390F-194A-45E4-BAD3-1660622166C0}|..\\WAVY\\WAVY.csproj|c:\\users\\rita\\source\\repos\\sd32\\wavy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Rita\\source\\repos\\SD32\\WAVY\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E867509-CFAD-4072-93D3-8E0B3C0411E6}|..\\Agregador\\Agregador.csproj|c:\\users\\rita\\source\\repos\\sd32\\agregador\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9358AB35-168F-477D-8CAE-6ABDAE63B8A7}|..\\Servidor\\Servidor.csproj|c:\\users\\rita\\source\\repos\\sd32\\servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,39 +46,35 @@
               "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs",
-              "RelativeDocumentMoniker": "..\\Agregador\\Program.cs",
-              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs*",
-              "RelativeToolTip": "..\\Agregador\\Program.cs*",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs",
+              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAkwE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T16:59:48.151Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-03T16:59:48.151Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs",
-              "RelativeDocumentMoniker": "..\\Servidor\\Program.cs",
-              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs*",
-              "RelativeToolTip": "..\\Servidor\\Program.cs*",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs",
+              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAiwEcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T16:59:22.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-03T16:59:22.848Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Rita\\source\\repos\\SD32\\WAVY\\Program.cs",
-              "RelativeDocumentMoniker": "..\\WAVY\\Program.cs",
-              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\WAVY\\Program.cs*",
-              "RelativeToolTip": "..\\WAVY\\Program.cs*",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAiwGEAAAAAAAAAAAAAAA==",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Rita\\source\\repos\\SD32\\WAVY\\Program.cs",
+              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\WAVY\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Rita\\source\\repos\\SD32\\WAVY\\Program.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T16:58:20.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-03T16:58:20.778Z"
             }
           ]
         }
