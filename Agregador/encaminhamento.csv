@@ -1,0 +1,3 @@
+tipo_dado,servidor,volume,preprocessamento
+acelerometro,127.0.0.1,baixo,sim
+giroscopio,127.0.0.1,baixo,sim
