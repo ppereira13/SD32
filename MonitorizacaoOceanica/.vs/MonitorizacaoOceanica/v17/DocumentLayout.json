@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\Rita\\source\\repos\\SD32\\MonitorizacaoOceanica\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0E867509-CFAD-4072-93D3-8E0B3C0411E6}|..\\Agregador\\Agregador.csproj|c:\\users\\rita\\source\\repos\\sd32\\agregador\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9358AB35-168F-477D-8CAE-6ABDAE63B8A7}|..\\Servidor\\Servidor.csproj|c:\\users\\rita\\source\\repos\\sd32\\servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -90,6 +93,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Agregador\\Program.cs",
+              "ToolTip": "C:\\Users\\Rita\\source\\repos\\SD32\\Agregador\\Program.cs",
+              "RelativeToolTip": "..\\Agregador\\Program.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAqwMAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T15:46:20.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Rita\\source\\repos\\SD32\\Servidor\\Program.cs",
               "RelativeDocumentMoniker": "..\\Servidor\\Program.cs",

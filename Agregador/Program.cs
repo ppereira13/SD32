@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq; // ← Aqui usamos o Newtonsoft.Json
+using Newtonsoft.Json.Linq;
 
 namespace Agregador
 {
@@ -14,8 +14,10 @@ namespace Agregador
         static readonly int portWavy = 5001;
         static readonly int serverPort = 5000;
         static string serverIP = "127.0.0.1";
-        static string csvEstadoWavy = "estado_wavy.csv";
+        static string csvEstadoWavy = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\estado_wavy.csv");
         static string csvEncaminhamento = "encaminhamento.csv";
+
+
 
         static void Main(string[] args)
         {
@@ -52,7 +54,7 @@ namespace Agregador
                     string messageFromWavy = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine("Recebido da WAVY: " + messageFromWavy);
 
-                    ProcessarMensagem(messageFromWavy); // ← análise e atualização
+                    ProcessarMensagem(messageFromWavy);
 
                     byte[] messageBytes = Encoding.UTF8.GetBytes(messageFromWavy);
                     serverStream.Write(messageBytes, 0, messageBytes.Length);
@@ -112,7 +114,7 @@ namespace Agregador
                         {
                             foreach (string linha in linhas)
                             {
-                                if (linha.StartsWith("tipo_dado")) continue; // ignora cabeçalho
+                                if (linha.StartsWith("tipo_dado")) continue;
 
                                 string[] partes = linha.Split(',');
                                 if (partes.Length >= 4 && partes[0] == sensor)
@@ -142,29 +144,44 @@ namespace Agregador
         {
             try
             {
-                string[] linhas = File.ReadAllLines(csvEstadoWavy);
+                List<string> novasLinhas = new List<string>();
                 bool encontrado = false;
 
+
+                if (!File.Exists(csvEstadoWavy))
+                    novasLinhas.Add("id_wavy,estado,sensores_ativos");
+                else
+                {
+                    string[] linhasExistentes = File.ReadAllLines(csvEstadoWavy);
+                    if (linhasExistentes.Length == 0 || !linhasExistentes[0].StartsWith("id_wavy"))
+                        novasLinhas.Add("id_wavy,estado,sensores_ativos");
+                    else
+                        novasLinhas.Add(linhasExistentes[0]);
+                }
+
+
+                string[] linhas = File.ReadAllLines(csvEstadoWavy);
                 for (int i = 1; i < linhas.Length; i++)
                 {
                     string[] colunas = linhas[i].Split(',');
-                    if (colunas[0] == id)
+                    if (colunas.Length > 0 && colunas[0] == id)
                     {
-                        linhas[i] = $"{id},operacao,{string.Join(";", sensores)}";
+                        novasLinhas.Add($"{id},operacao,{string.Join(";", sensores)}");
                         encontrado = true;
+                    }
+                    else
+                    {
+                        novasLinhas.Add(linhas[i]);
                     }
                 }
 
                 if (!encontrado)
                 {
-                    File.AppendAllText(csvEstadoWavy, $"{id},operacao,{string.Join(";", sensores)}\n");
-                }
-                else
-                {
-                    File.WriteAllLines(csvEstadoWavy, linhas);
+                    novasLinhas.Add($"{id},operacao,{string.Join(";", sensores)}");
                 }
 
-                Console.WriteLine($"Estado atualizado: {id}, sensores = {string.Join(";", sensores)}");
+                File.WriteAllLines(csvEstadoWavy, novasLinhas);
+                Console.WriteLine($"✅ Estado atualizado: {id}, sensores = {string.Join(";", sensores)}");
             }
             catch (Exception ex)
             {
