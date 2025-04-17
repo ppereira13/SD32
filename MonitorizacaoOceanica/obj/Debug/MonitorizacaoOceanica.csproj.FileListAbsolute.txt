@@ -15,3 +15,6 @@ C:\Users\Rita\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOce
 C:\Users\Rita\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\Monitori.B59FE330.Up2Date
 C:\Users\Rita\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOceanica.exe
 C:\Users\Rita\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\MonitorizacaoOceanica.pdb
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\bin\Debug\Newtonsoft.Json.xml
+C:\Users\pedro\source\repos\SD32\MonitorizacaoOceanica\obj\Debug\Monitori.B59FE330.Up2Date

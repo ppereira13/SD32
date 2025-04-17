@@ -14,8 +14,8 @@ namespace Agregador
         static readonly int portWavy = 5001;
         static readonly int serverPort = 5000;
         static string serverIP = "127.0.0.1";
-        static string csvEstadoWavy = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\estado_wavy.csv");
-        static string csvEncaminhamento = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\encaminhamento.csv");
+        static string csvEstadoWavy = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\pedro\source\repos\SD32\Agregador\estado_wavy.csv");
+        static string csvEncaminhamento = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\pedro\source\repos\SD32\Agregador\encaminhamento.csv");
 
 
 
