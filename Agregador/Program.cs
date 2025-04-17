@@ -14,8 +14,8 @@ namespace Agregador
         static readonly int portWavy = 5001;
         static readonly int serverPort = 5000;
         static string serverIP = "127.0.0.1";
-        static string csvEstadoWavy = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\pedro\source\repos\SD32\Agregador\estado_wavy.csv");
-        static string csvEncaminhamento = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\pedro\source\repos\SD32\Agregador\encaminhamento.csv");
+        static string csvEstadoWavy = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\estado_wavy.csv");
+        static string csvEncaminhamento = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\encaminhamento.csv");
 
 
 
@@ -134,12 +134,22 @@ namespace Agregador
                         Console.WriteLine("⚠ Ficheiro encaminhamento.csv não encontrado.");
                     }
                 }
+                else if (tipo == "QUIT")
+                {
+                    Console.WriteLine($"WAVY {idWavy} encerrou a comunicação.");
+                }
+                else if (tipo == "OLA")
+                {
+                    Console.WriteLine($"WAVY {idWavy} registada.");
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao processar mensagem DADOS: " + ex.Message);
+                Console.WriteLine("Erro ao processar mensagem: " + ex.Message);
             }
         }
+
+
 
         static void AtualizarEstadoWavy(string id, List<string> sensores)
         {
@@ -182,7 +192,7 @@ namespace Agregador
                 }
 
                 File.WriteAllLines(csvEstadoWavy, novasLinhas);
-                Console.WriteLine($"✅ Estado atualizado: {id}, sensores = {string.Join(";", sensores)}");
+                Console.WriteLine($"Estado atualizado: {id}, sensores = {string.Join(";", sensores)}");
             }
             catch (Exception ex)
             {

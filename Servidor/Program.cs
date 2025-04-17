@@ -10,6 +10,9 @@ namespace Servidor
     {
         static readonly int port = 5000;
 
+        // Mutex global para proteger secções críticas (como acesso a ficheiros no futuro)
+        static Mutex mutex = new Mutex();
+
         static void Main(string[] args)
         {
             TcpListener listener = new TcpListener(IPAddress.Any, port);
@@ -36,6 +39,8 @@ namespace Servidor
             {
                 while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
+                    mutex.WaitOne(); // entra na secção crítica
+
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine("Mensagem recebida: " + message);
 
@@ -55,16 +60,18 @@ namespace Servidor
                     }
                     else
                     {
-                        // Para qualquer outra mensagem, responde genericamente
                         string response = "{\"status\": \"200 OK\", \"mensagem\": \"Dados recebidos.\"}";
                         byte[] responseBytes = Encoding.UTF8.GetBytes(response);
                         stream.Write(responseBytes, 0, responseBytes.Length);
                     }
+
+                    mutex.ReleaseMutex(); // sai da secção crítica
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
+                if (mutex.WaitOne(0)) mutex.ReleaseMutex(); // prevenção de deadlock
             }
             finally
             {
