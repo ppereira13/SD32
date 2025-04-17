@@ -15,7 +15,8 @@ namespace Agregador
         static readonly int serverPort = 5000;
         static string serverIP = "127.0.0.1";
         static string csvEstadoWavy = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\estado_wavy.csv");
-        static string csvEncaminhamento = "encaminhamento.csv";
+        static string csvEncaminhamento = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\Users\Rita\source\repos\SD32\Agregador\encaminhamento.csv");
+
 
 
 
@@ -130,7 +131,7 @@ namespace Agregador
                     }
                     else
                     {
-                        Console.WriteLine("⚠️ Ficheiro encaminhamento.csv não encontrado.");
+                        Console.WriteLine("⚠ Ficheiro encaminhamento.csv não encontrado.");
                     }
                 }
             }

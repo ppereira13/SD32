@@ -46,13 +46,19 @@ namespace Servidor
                         stream.Write(responseBytes, 0, responseBytes.Length);
                         firstMessage = false;
                     }
-
-                    if (message.Contains("QUIT"))
+                    else if (message.Contains("QUIT"))
                     {
                         string response = "{\"status\": \"400 BYE\", \"mensagem\": \"Encerrando comunicação.\"}";
                         byte[] responseBytes = Encoding.UTF8.GetBytes(response);
                         stream.Write(responseBytes, 0, responseBytes.Length);
                         break;
+                    }
+                    else
+                    {
+                        // Para qualquer outra mensagem, responde genericamente
+                        string response = "{\"status\": \"200 OK\", \"mensagem\": \"Dados recebidos.\"}";
+                        byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                        stream.Write(responseBytes, 0, responseBytes.Length);
                     }
                 }
             }
